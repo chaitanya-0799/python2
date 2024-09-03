@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 import json
 import os
-from urlparse import urlparse
+from urllib.parse import urlparse  # Updated import
 
 from flask import Flask, render_template, request, redirect, session
 from flask_sslify import SSLify
@@ -65,7 +65,7 @@ def submit():
     """The other two steps in the three-legged Oauth handshake.
 
     Your redirect uri will redirect you here, where you will exchange
-    a code that can be used to obtain an access token for the logged-in use.
+    a code that can be used to obtain an access token for the logged-in user.
     """
     params = {
         'redirect_uri': get_redirect_uri(request),
@@ -152,7 +152,7 @@ def time():
 def price():
     """Example call to the price estimates endpoint.
 
-    Returns the time estimates from the given lat/lng given below.
+    Returns the price estimates from the given lat/lng given below.
     """
     url = config.get('base_uber_url') + 'estimates/price'
     params = {
@@ -179,7 +179,7 @@ def price():
 
 @app.route('/history', methods=['GET'])
 def history():
-    """Return the last 5 trips made by the logged in user."""
+    """Return the last 5 trips made by the logged-in user."""
     url = config.get('base_uber_url_v1_1') + 'history'
     params = {
         'offset': 0,
@@ -203,7 +203,7 @@ def history():
 
 @app.route('/me', methods=['GET'])
 def me():
-    """Return user information including name, picture and email."""
+    """Return user information including name, picture, and email."""
     url = config.get('base_uber_url') + 'me'
     response = app.requests_session.get(
         url,
@@ -229,5 +229,5 @@ def get_redirect_uri(request):
     return 'https://{hostname}/submit'.format(hostname=parsed_url.hostname)
 
 if __name__ == '__main__':
-    app.debug = os.environ.get('FLASK_DEBUG', True)
-    app.run(host='0.0.0.0', port=7000)
+    app.run(host='0.0.0.0', port=7000, debug=True)
+
