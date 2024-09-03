@@ -27,7 +27,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker buildx build \
-            --tag ckdh0799/python2:${{ github.sha }} \
+            --tag ckdh0799/python2:${{ github.run_number }} \
             --push \
             .
       - name: Set up SSH
@@ -43,6 +43,6 @@ jobs:
             docker rm python-gha || true
             
             # Run the new Docker container
-            docker run -itd --name python-gha -p 800:5000 ckdh0799/python2:${{ github.sha }}
+            docker run -itd --name python-gha -p 800:5000 ckdh0799/python2:${{ github.run_number }}
 
             
