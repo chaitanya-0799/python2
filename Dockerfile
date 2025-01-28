@@ -1,13 +1,13 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.11-slim
 
-# Set environment variables
+# Setting up environment variables
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_RUN_PORT=7000
 ENV FLASK_DEBUG=1
 
-# Install dependencies
+# Installing dependencies
 RUN pip install --upgrade pip
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
