@@ -43,7 +43,7 @@ jobs:
     - name: ssh_login
       run: |
         echo "${PRIVATE_KEY}" > private_key.pem && chmod 600 private_key.pem
-        ssh -o StrictHostKeyChecking=no -i private_key.pem ${USER_NAME}@${HOSTNAME} 
+        ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@13.233.28.74 
 
           docker stop python || true 
           docker rm python || true 
