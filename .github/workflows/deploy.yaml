@@ -34,7 +34,7 @@ jobs:
 
     steps:
     - name: Build & Deploy
-      uses: actions/checkout@v2 
+      uses: webfactory/ssh-agent@v0.6.0 
       with:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           HOSTNAME: ${{ secrets.SSH_HOST }}
