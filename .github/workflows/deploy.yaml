@@ -39,7 +39,7 @@ jobs:
 
   Deploy:
     runs-on: ubuntu-latest
-    needs: [Build, Push]
+    needs: [Push]
 
     steps:
     - name: Build & Deploy
