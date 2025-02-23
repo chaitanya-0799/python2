@@ -47,4 +47,4 @@ jobs:
 
           docker stop python || true 
           docker rm pyhton || true 
-          docker run -name python -itdp 800:7000 ckdh0799/gha:latest 
+          docker run --name python -itdp 800:7000 ckdh0799/gha:latest 
