@@ -41,8 +41,8 @@ jobs:
     
     - name: ssh_login
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@13.233.28.74 
+        ssh -o StrictHostKeyChecking=no ubuntu@13.233.28.74 \
 
-          docker stop python || true 
-          docker rm python || true 
-          docker run --name python -itdp 800:7000 ckdh0799/gha:latest 
+          "docker stop python || true && \
+           docker rm python || true && \
+           docker run --name python -itdp 800:7000 ckdh0799/gha:latest" 
