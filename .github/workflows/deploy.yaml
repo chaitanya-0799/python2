@@ -48,12 +48,12 @@ jobs:
     steps:
     - name: Build & Deploy
       uses: actions/checkout@v2 
-      
-      env:
+      with:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           HOSTNAME: ${{secrets.SSH_HOST}}
           USER_NAME: ${{secrets.USER_NAME}}
     
+    - name: ssh_login
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
@@ -61,7 +61,3 @@ jobs:
           docker stop python || true 
           docker rm pyhton || true 
           docker run -name python -itdp 800:7000 ckdh0799/gha:latest 
-
-
-
-
