@@ -41,8 +41,9 @@ jobs:
     
     - name: ssh_login
       run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@13.233.28.74 \
+        ssh -vvv -o StrictHostKeyChecking=no ubuntu@13.233.28.74 "echo 'Connected Successfully'" \
 
           "docker stop python || true && \
            docker rm python || true && \
-           docker run --name python -itdp 800:7000 ckdh0799/gha:latest" 
+           docker pull ckdh0799/gha:latest && \
+           docker run --name python -d -p 800:7000 ckdh0799/gha:latest" 
